@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const AddExpense = () => {
-  return (
-    <div>
-      Add Expense Form
-    </div>
-  )
-}
+  return <div className="container">Add Expense Form</div>;
+};
 
-export default AddExpense
+export default AddExpense;

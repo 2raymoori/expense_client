@@ -47,11 +47,6 @@ export const userReducer = (state = initState, action) => {
         loading: false,
         user: action.payload,
       };
-    case LOAD_INCOME_CATEGORY:
-      return {
-        ...state,
-        userIncomeCategory: action.payload,
-      };
     case "LOAD_EXPENSE_CATEGORYyyyy":
       return {
         ...state,
