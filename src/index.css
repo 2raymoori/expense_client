@@ -1,0 +1,41 @@
+*{
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+} */
+.signupLogin{
+  background-image: url("./Assets/SignupBackground.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity:0.7;
+  height:100vh;
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  
+}
+.formContainer{
+  /* border:solid 1px red; */
+padding:2rem;
+
+  display:flex;
+  overflow: hidden;;
+  flex-direction: column;;
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* width:50%; */
+  background-color:orange;
+  opacity:0.9;
+  width:35%;
+  margin:0 auto;
+}
+.row{  padding-top: 5px;
+  /* width:50%;
+  margin:0 auto; */
+}

@@ -1,0 +1,13 @@
+const LOAD_USER = 'LOAD_USER';
+const USER_LOADED = 'USER_LOADED';
+const USER_LOADED_ERROR = 'USER_LOADED_ERROR';
+const SIGNUP_USER =  "SIGNUP_USER";
+const SIGN_OUT = "SIGN_OUT";
+
+module.exports = {
+    USER_LOADED_ERROR,
+    USER_LOADED,
+    LOAD_USER,
+    SIGNUP_USER,
+    SIGN_OUT
+}
