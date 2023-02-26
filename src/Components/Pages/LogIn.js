@@ -7,18 +7,22 @@ import InputField from "../GenericComponents/InputField";
 import { Link, Navigate, redirect } from "react-router-dom";
 import { loadIncomeCategory } from "../../Redux/Actions/IncomeCategory.action";
 import { loadExpenseCategory } from "../../Redux/Actions/ExpenseCategory.action";
+import { loadIncome } from "../../Redux/Actions/Income.action";
 
 const LogIn = (props) => {
   const [formInput, setFormInput] = useState({ email: "", password: "" });
+
   const processInput = (ref) => {
     setFormInput({ ...formInput, [ref.target.name]: ref.target.value });
   };
+
   const submitForm = async (e) => {
     e.preventDefault();
     console.log(formInput);
     await props.signIn(formInput.email, formInput.password);
     props.loadIncomeCateogyr();
     props.loadExpenseCategory();
+    props.loadIncome();
     if (props.user.status === 1) {
       console.log(
         "Because the status changed to 1, I will load the income category..."
@@ -96,6 +100,10 @@ const mapActionToProps = (dispatch) => {
     },
     signIn: (inputEmail, inputPassword) => {
       dispatch(signInUser(inputEmail, inputPassword));
+    },
+
+    loadIncome: () => {
+      dispatch(loadIncome());
     },
   };
 };

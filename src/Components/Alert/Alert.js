@@ -1,18 +1,22 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React from "react";
+import { connect } from "react-redux";
 
 const Alert = (props) => {
   return (
     <div>
-      {props.alert.map(e=>{
-        return <p className={`text-${e.type}`} key={e.id}>{e.msg}</p>
+      {props.alert.map((e) => {
+        return (
+          <p className={`text-${e.type} text-center`} key={e.id}>
+            {e.msg}
+          </p>
+        );
       })}
     </div>
-  )
-}
-const mapStateToProps =state=>{
-  return{
-    alert : state.alert
-  }
-}
-export default connect(mapStateToProps)(Alert)
+  );
+};
+const mapStateToProps = (state) => {
+  return {
+    alert: state.alert,
+  };
+};
+export default connect(mapStateToProps)(Alert);

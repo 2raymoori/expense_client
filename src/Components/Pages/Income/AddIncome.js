@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { loadIncome, addIncome } from "../../../Redux/Actions/Income.action";
+import Alert from "../../Alert/Alert";
 
 const AddIncome = (props) => {
   const [formControl, setFormControl] = useState({
     name: "",
     amount: 0,
-    desc: "",
-    category: "",
-    date: "",
+    description: "",
+    incomeCategory: "",
+    incomeDate: "",
   });
   const processInput = (e) => {
     setFormControl({ ...formControl, [e.target.name]: e.target.value });
@@ -16,10 +18,12 @@ const AddIncome = (props) => {
   const processForm = (e) => {
     e.preventDefault();
     console.log(formControl);
+    props.addIncome(formControl);
   };
   return (
     <div className="container border border-1 border-danger">
       <h1 className="text-primary text-center">Income Details</h1>
+      <Alert />
       <div className="container row">
         <form onSubmit={processForm}>
           <div className="col-lg-12">
@@ -56,8 +60,8 @@ const AddIncome = (props) => {
           <div className="col-lg-12">
             <div class="form-floating mb-3">
               <textarea
-                name={"desc"}
-                value={formControl.desc}
+                name={"description"}
+                value={formControl.description}
                 onChange={processInput}
                 class="form-control"
                 placeholder="Leave a comment here"
@@ -70,9 +74,9 @@ const AddIncome = (props) => {
             <div className="form-floating mb-3">
               <input
                 required
-                name={"date"}
+                name={"incomeDate"}
                 type={"date"}
-                value={formControl.date}
+                value={formControl.incomeDate}
                 onChange={processInput}
                 className="form-control"
                 id={"id"}
@@ -85,7 +89,7 @@ const AddIncome = (props) => {
             <div class="form-floating">
               <select
                 onChange={processInput}
-                name={"category"}
+                name={"incomeCategory"}
                 id="incomeCategory"
                 class="form-control form-select"
               >
@@ -116,5 +120,12 @@ const mapStateToProps = (state) => {
     incomeCategory: state.incomeCategory,
   };
 };
+const mapDispatcerToProps = (dispatcher) => {
+  return {
+    addIncome: (data) => {
+      dispatcher(addIncome(data));
+    },
+  };
+};
 
-export default connect(mapStateToProps, null)(AddIncome);
+export default connect(mapStateToProps, mapDispatcerToProps)(AddIncome);
