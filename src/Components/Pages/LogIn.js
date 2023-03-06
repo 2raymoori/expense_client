@@ -8,6 +8,7 @@ import { Link, Navigate, redirect } from "react-router-dom";
 import { loadIncomeCategory } from "../../Redux/Actions/IncomeCategory.action";
 import { loadExpenseCategory } from "../../Redux/Actions/ExpenseCategory.action";
 import { loadIncome } from "../../Redux/Actions/Income.action";
+import {loadExpense} from "../../Redux/Actions/Expense.action";
 
 const LogIn = (props) => {
   const [formInput, setFormInput] = useState({ email: "", password: "" });
@@ -23,6 +24,7 @@ const LogIn = (props) => {
     props.loadIncomeCateogyr();
     props.loadExpenseCategory();
     props.loadIncome();
+    props.loadExpense();
     if (props.user.status === 1) {
       console.log(
         "Because the status changed to 1, I will load the income category..."
@@ -101,10 +103,12 @@ const mapActionToProps = (dispatch) => {
     signIn: (inputEmail, inputPassword) => {
       dispatch(signInUser(inputEmail, inputPassword));
     },
-
     loadIncome: () => {
       dispatch(loadIncome());
     },
+    loadExpense:()=>{
+      dispatch(loadExpense());
+    }
   };
 };
 export default connect(mapStateToProps, mapActionToProps)(LogIn);

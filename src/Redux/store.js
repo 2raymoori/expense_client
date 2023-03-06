@@ -7,6 +7,7 @@ import { expenseCatReducer } from "./Reducers/ExpenseCategory.reducer";
 import { incomeReducer } from "./Reducers/Income.reducer";
 import { incomeCatReducer } from "./Reducers/IncomeCategory.reducer";
 import { userReducer } from "./Reducers/User.reducer";
+import {expenseReducer} from "./Reducers/Expense.reducer";
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   expenseCategory: expenseCatReducer,
   incomeCategory: incomeCatReducer,
   income: incomeReducer,
+  expense:expenseReducer
 });
 const store = createStore(
   rootReducer,

@@ -99,7 +99,7 @@ export const signupUser = (data) => async (dispatch) => {
           }
         );
         if (res.status === 200) {
-          localStorage.setItem("token", res.data.token);
+          localStorage.setItem("tokenVal", res.data.token);
           dispatch(userLoaded(res.data.user));
           // dispatch(userLoaded(res.data.msg))
         } else {

@@ -40,6 +40,7 @@ export const addIncome = (incomeDetail) => async (dispatcher) => {
     ) {
       const body = JSON.stringify(incomeDetail);
       const url = url_prefix + "add";
+
       const res = await axios.post(url, body, config);
       if (res.status === 200) {
         dispatcher({
