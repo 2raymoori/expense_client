@@ -1,5 +1,9 @@
 import axios from "axios";
 import { registerAlert } from "./AlertAction";
+import {loadExpense} from "./Expense.action";
+import {loadIncome} from "./Income.action";
+import {loadIncomeCategory} from "./IncomeCategory.action";
+import {loadExpenseCategory} from "./ExpenseCategory.action";
 
 const {
   USER_LOADED_ERROR,
@@ -56,6 +60,12 @@ export const signInUser = (email, password) => async (dispatch) => {
           localStorage.setItem("tokenVal", res.data.token);
           console.log(res.data.token);
           dispatch(userLoaded(res.data.user));
+          dispatch(loadExpense());
+          dispatch(loadIncome());
+          dispatch(loadIncomeCategory());
+          dispatch(loadExpenseCategory());
+          console.log('loginSuccess....')
+          return 'loginSuccess';
         } else {
           dispatch(registerAlert(res.data.msg, "danger"));
         }

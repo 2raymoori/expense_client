@@ -19,18 +19,9 @@ const LogIn = (props) => {
 
   const submitForm = async (e) => {
     e.preventDefault();
-    console.log(formInput);
-    await props.signIn(formInput.email, formInput.password);
-    props.loadIncomeCateogyr();
-    props.loadExpenseCategory();
-    props.loadIncome();
-    props.loadExpense();
-    if (props.user.status === 1) {
-      console.log(
-        "Because the status changed to 1, I will load the income category..."
-      );
-    }
+    props.signIn(formInput.email, formInput.password);
   };
+
   return (
     <>
       {props.user.status === 1 ? (
@@ -94,20 +85,8 @@ const mapStateToProps = (state) => {
 };
 const mapActionToProps = (dispatch) => {
   return {
-    loadExpenseCategory: () => {
-      dispatch(loadExpenseCategory());
-    },
-    loadIncomeCateogyr: () => {
-      dispatch(loadIncomeCategory());
-    },
     signIn: (inputEmail, inputPassword) => {
       dispatch(signInUser(inputEmail, inputPassword));
-    },
-    loadIncome: () => {
-      dispatch(loadIncome());
-    },
-    loadExpense:()=>{
-      dispatch(loadExpense());
     }
   };
 };

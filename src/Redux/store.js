@@ -17,8 +17,10 @@ const rootReducer = combineReducers({
   income: incomeReducer,
   expense:expenseReducer
 });
+
 const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );
 export default store;
+
