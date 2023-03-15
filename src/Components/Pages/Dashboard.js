@@ -8,19 +8,28 @@ const Dashboard = (props) => {
     const tmpReportingObj = {};
   for(const item of props.income){
     const curCategory = item.incomeCategory.name;
-    const transactionDate = item.createdAt.split('T')[0]
-    if(tmpReportingObj[curCategory] === undefined){
-      tmpReportingObj[curCategory] = {[transactionDate]:{amount:item.amount}}
+    const transactionDate = item.createdAt.split('T')[0];
+    const year = transactionDate.split("-")[0];
+    const month = transactionDate.split("-")[1];
+
+    if(tmpReportingObj[year] === undefined){
+      //tmpReportingObj[year] = {[transactionDate]:{amount:item.amount}}
+      tmpReportingObj[year] = {[month]:{[curCategory]:[item.amount]}};
     }else{
-      if(tmpReportingObj[curCategory][transactionDate] === undefined) {
-        tmpReportingObj[curCategory][transactionDate] =  {amount: item.amount}
+      console.log("sdfsd")
+      if(tmpReportingObj[year][month] === undefined) {
+        tmpReportingObj[year][month]=[item.amount];// =  {amount: item.amount}
       }
       else{
-        console.log("false....")
-        let updateAmount = item.amount + tmpReportingObj[curCategory][transactionDate].amount;
-        tmpReportingObj[curCategory][transactionDate] =  {amount: updateAmount}
+        if(tmpReportingObj[year][month][curCategory] === undefined){
+            tmpReportingObj[year][month][curCategory] = [item.amount];
+        }
+        else{
+          tmpReportingObj[year][month][curCategory].push(item.amount);
+        }
+        // let updateAmount = item.amount + tmpReportingObj[curCategory][transactionDate].amount;
+        // tmpReportingObj[curCategory][transactionDate] =  {amount: updateAmount}
       }
-
     }
   }
   console.log(tmpReportingObj)
