@@ -44,10 +44,13 @@ export const addExpense = (expenseDetail) => async (dispatcher) => {
             const url = url_prefix + "add";
 
             const res = await axios.post(url, body, config);
+            console.log(res);
+            const response = await axios.get(`${url_prefix}${res.data.data._id}`,config);
+            console.log(response);
             if (res.status === 200) {
                 dispatcher({
-                    type: ADD_EXPENSE,
-                    payload: res.data.data,
+                    type: "ADD_EXPENSE",
+                    payload: response.data.data[0],
                 });
                 dispatcher(registerAlert("Expense Successfully added ", "success"));
             } else {

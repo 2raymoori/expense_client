@@ -13,7 +13,6 @@ const url_prefix = "http://127.0.0.1:3001/api/income/";
 export const loadIncome = () => async (dispatcher) => {
   try {
     const URL = url_prefix + "all";
-
     const res = await axios.get(URL, config);
     if (res.status === 200) {
       dispatcher({
@@ -42,10 +41,14 @@ export const addIncome = (incomeDetail) => async (dispatcher) => {
       const url = url_prefix + "add";
 
       const res = await axios.post(url, body, config);
-      if (res.status === 200) {
+      const response = await axios.get(`${url_prefix}${res.data.data._id}`,config);
+      console.log(response);
+      console.log("########################################################################################")
+      console.log(res.data.data);
+      if (response.status === 200) {
         dispatcher({
-          type: ADD_INCOME,
-          payload: res.data.data,
+          type: "ADD_INCOME",
+          payload: response.data.data[0],
         });
         dispatcher(registerAlert("Income Successfully added ", "success"));
       } else {

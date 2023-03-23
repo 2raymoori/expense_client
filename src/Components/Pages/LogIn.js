@@ -4,7 +4,7 @@ import { addAlert } from "../../Redux/Actions/AlertAction";
 import { signInUser } from "../../Redux/Actions/User.action";
 import Alert from "../Alert/Alert";
 import InputField from "../GenericComponents/InputField";
-import { Link, Navigate, redirect } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { loadIncomeCategory } from "../../Redux/Actions/IncomeCategory.action";
 import { loadExpenseCategory } from "../../Redux/Actions/ExpenseCategory.action";
 import { loadIncome } from "../../Redux/Actions/Income.action";
@@ -12,6 +12,7 @@ import {loadExpense} from "../../Redux/Actions/Expense.action";
 
 const LogIn = (props) => {
   const [formInput, setFormInput] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
 
   const processInput = (ref) => {
     setFormInput({ ...formInput, [ref.target.name]: ref.target.value });
@@ -25,7 +26,11 @@ const LogIn = (props) => {
   return (
     <>
       {props.user.status === 1 ? (
-        <Navigate replace to="/dashboard" />
+        // <Navigate replace to="/dashboard" />
+        // navigate('/dashboard')
+          setTimeout(()=>{
+navigate('/dashboard')
+          },100)
       ) : (
         <div className="signupLogin">
           <div className="formContainer">
@@ -81,6 +86,7 @@ const LogIn = (props) => {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    income:state.income
   };
 };
 const mapActionToProps = (dispatch) => {
