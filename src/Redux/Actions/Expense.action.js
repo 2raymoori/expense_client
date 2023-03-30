@@ -9,12 +9,18 @@ const config = {
         "user-auth-token": authToken,
     },
 };
-const url_prefix = "http://127.0.0.1:3001/api/expense/";
-export const loadExpense = () => async (dispatcher) => {
+const url_prefix = "https://smiling-bull-apron.cyclic.app/api/expense/";
+export const loadExpense = (inputToken) => async (dispatcher) => {
+    console.log(":::: "+inputToken);
     try {
         const URL = url_prefix + "all";
-
-        const res = await axios.get(URL, config);
+        const res = await axios.get(URL, {
+            headers: {
+                "Content-Type": "application/json",
+                "user-auth-token": inputToken,
+            }
+        });
+        console.log(res);
         if (res.status === 200) {
             dispatcher({
                 type: LOAD_EXPENSE,

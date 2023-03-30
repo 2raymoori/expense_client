@@ -9,11 +9,17 @@ const config = {
     "user-auth-token": authToken,
   },
 };
-const url_prefix = "http://127.0.0.1:3001/api/income/";
-export const loadIncome = () => async (dispatcher) => {
+const url_prefix = "https://smiling-bull-apron.cyclic.app/api/income/";
+export const loadIncome = (inputToken) => async (dispatcher) => {
+  
   try {
     const URL = url_prefix + "all";
-    const res = await axios.get(URL, config);
+    const res = await axios.get(URL, {
+      headers: {
+        "Content-Type": "application/json",
+        "user-auth-token": inputToken,
+      },
+    });
     if (res.status === 200) {
       dispatcher({
         type: LOAD_INCOME,
@@ -26,6 +32,7 @@ export const loadIncome = () => async (dispatcher) => {
 };
 
 export const addIncome = (incomeDetail) => async (dispatcher) => {
+  console.log(incomeDetail);
   try {
     console.log("dispathcer..... income");
     const { name, amount, description, incomeCategory, incomeDate } =

@@ -93,25 +93,28 @@ const ExpenseCategory = (props) => {
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">Category Name</th>
+                <th scope="col">Category Namess</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
-              {props.expenceCatState.map((e) => {
-                return (
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>{e.name}</td>
-                    <td>
-                      <button className="btn btn-outline-primary margin-right-21">
-                        Edit
-                      </button>
-                      <button className="btn btn-outline-danger">Delete</button>
-                    </td>
-                  </tr>
-                );
-              })}
+              {props.expenceCatState.length === 0 ? (<span className="text-center text-danger">Sorry There Exists no expense Category yet. Please add </span>):(
+                props.expenceCatState.map((e) => {
+                  return (
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>{e.name}</td>
+                      <td>
+                        <button className="btn btn-outline-primary margin-right-21">
+                          Edit
+                        </button>
+                        <button className="btn btn-outline-danger">Delete</button>
+                      </td>
+                    </tr>
+                  );
+                })
+              )}
+              
             </tbody>
           </table>
         </div>

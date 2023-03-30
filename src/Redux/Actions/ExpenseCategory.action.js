@@ -18,7 +18,7 @@ export const addExpenseCategory = (categoryName) => async (dispatch) => {
     };
 
     const res = await axios.post(
-      "http://localhost:3001/api/expensecategory/add",
+      "https://smiling-bull-apron.cyclic.app/api/expensecategory/add",
       body,
       config
     );
@@ -42,7 +42,7 @@ export const addExpenseCategory = (categoryName) => async (dispatch) => {
   }
 };
 
-export const loadExpenseCategory = () => async (dispatch) => {
+export const loadExpenseCategory = (inputToken) => async (dispatch) => {
   try {
     const config = {
       headers: {
@@ -55,8 +55,11 @@ export const loadExpenseCategory = () => async (dispatch) => {
     console.log(config);
     console.log("EXPPPPPPPPPPPPPPPPPPP form expense category action");
 
-    const url = "http://127.0.0.1:3001/api/expensecategory/all";
-    const res = await axios(url, config);
+    const url = "https://smiling-bull-apron.cyclic.app/api/expensecategory/all";
+    const res = await axios(url, {headers:{
+      "Content-Type":"application/json",
+      'user-auth-token':inputToken
+    }});
     if (res.status === 200) {
       dispatch({
         type: LOAD_EXPENSE_CATEGORY,

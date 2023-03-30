@@ -4,6 +4,7 @@ import {loadExpense} from "./Expense.action";
 import {loadIncome} from "./Income.action";
 import {loadIncomeCategory} from "./IncomeCategory.action";
 import {loadExpenseCategory} from "./ExpenseCategory.action";
+const token = localStorage.getItem("tokenVal");
 
 const {
   USER_LOADED_ERROR,
@@ -50,20 +51,24 @@ export const signInUser = (email, password) => async (dispatch) => {
           password: password,
         };
         const res = await axios.post(
-          "http://localhost:3001/api/auth/signin",
+          "https://smiling-bull-apron.cyclic.app/api/auth/signin",
           data,
           {
             headers: { "Content-Type": "application/json" },
           }
         );
+        console.log(res);
         if (res.status === 200) {
           localStorage.setItem("tokenVal", res.data.token);
-          console.log(res.data.token);
+          // console.log(res.data.token);
+          console.log(token);
+            
           dispatch(userLoaded(res.data.user));
-          dispatch(loadExpense());
-          dispatch(loadIncome());
-          dispatch(loadIncomeCategory());
-          dispatch(loadExpenseCategory());
+          dispatch(loadExpense(res.data.token));
+          dispatch(loadIncome(res.data.token));
+          dispatch(loadIncomeCategory(res.data.token));
+          dispatch(loadExpenseCategory(res.data.token));
+          
           console.log('loginSuccess....')
           return 'loginSuccess';
         } else {
@@ -82,7 +87,6 @@ export const signInUser = (email, password) => async (dispatch) => {
 };
 export const signupUser = (data) => async (dispatch) => {
   try {
-    // console.log(data)
     if (
       data.email === "" ||
       data.fName === "" ||
@@ -102,7 +106,7 @@ export const signupUser = (data) => async (dispatch) => {
       dispatch(loadUser());
       try {
         const res = await axios.post(
-          "http://localhost:3001/api/auth/signup",
+          "https://smiling-bull-apron.cyclic.app/api/auth/signup",
           data,
           {
             headers: { "Content-Type": "application/json" },

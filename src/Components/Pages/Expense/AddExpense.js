@@ -19,6 +19,13 @@ const AddExpense = (props) => {
     e.preventDefault();
     console.log(formControl);
     props.addExpense(formControl);
+    setFormControl({
+      name: "",
+      amount: 0,
+      description: "",
+      expenseCategory: "",
+      expenseDate: "",
+    })
   };
   return (
       <div className="container border border-1 border-danger">

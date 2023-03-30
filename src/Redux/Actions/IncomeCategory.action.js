@@ -17,7 +17,7 @@ export const addIncomeCategory = (catName) => async (dispatch) => {
       },
     };
     const res = await axios.post(
-      "http://localhost:3001/api/incomecategory/add",
+      "https://smiling-bull-apron.cyclic.app/api/incomecategory/add",
       body,
       config
     );
@@ -41,7 +41,7 @@ export const addIncomeCategory = (catName) => async (dispatch) => {
   }
 };
 
-export const loadIncomeCategory = () => async (dispatch) => {
+export const loadIncomeCategory = (inputToken) => async (dispatch) => {
   try {
     const config = {
       headers: {
@@ -49,8 +49,13 @@ export const loadIncomeCategory = () => async (dispatch) => {
         "user-auth-token": token,
       },
     };
-    const url = "http://127.0.0.1:3001/api/incomecategory/all";
-    const res = await axios(url, config);
+    const url = "https://smiling-bull-apron.cyclic.app/api/incomecategory/all";
+    const res = await axios(url, {
+      headers:{
+        "Content-Type":'application/json',
+        'user-auth-token':inputToken
+      }
+    });
     if (res.status === 200) {
       dispatch({
         type: LOAD_INCOME_CATEGORY,

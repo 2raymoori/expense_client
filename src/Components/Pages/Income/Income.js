@@ -9,34 +9,34 @@ const Income = (props) => {
           <table class="table table-hover">
             <thead>
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">Category Name</th>
+                <th scope="col">Income List</th>
               </tr>
             </thead>
             <tbody>
-              {props.income.map((e) => {
+              {props.income.length === 0 ? (<span>Sorry There exists no Income in the System. Please add one</span>):(props.income.map((e) => {
                 return (
                   <tr>
-                    <th scope="row">2</th>
-                    <td className="d-flex align-items-center justify-content-between">
+                    <td className="">
+
                       <div className="border border-danger">
                         <p>
-                          {e.createdAt.split("T")[0]}
+                        <span  style={{borderBottom:"solid 1px ", display:"block",textAlign:"center"}}>{e.createdAt.split("T")[0]}</span>
                           <br />
-                          {e.name}
+                          <b>Name: </b>{e.name}
                           <br />
-                          {e.description}
+                          <b>Description: </b>{e.description}
                           <br />
-                          {e.incomeCategory.name}
+                          <b>Category: </b>{e.incomeCategory.name}
                         </p>
                       </div>
                       <div className="border border-primary text-success">
-                        <p>{e.amount}</p>
+                        <p style={{textAlign:"right"}} >{e.amount}</p>
                       </div>
                     </td>
                   </tr>
                 );
-              })}
+              }))}
+              {}
             </tbody>
           </table>
         </div>

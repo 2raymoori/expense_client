@@ -100,20 +100,22 @@ const IncomeCategory = (props) => {
               </tr>
             </thead>
             <tbody>
-              {props.incomeCatState.map((e) => {
-                return (
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>{e.name}</td>
-                    <td>
-                      <button className="btn btn-outline-primary margin-right-21">
-                        Edit
-                      </button>
-                      <button className="btn btn-outline-danger">Delete</button>
-                    </td>
-                  </tr>
-                );
-              })}
+            {
+props.incomeCatState.map((e) => {
+  return (
+    <tr>
+      <th scope="row">2</th>
+      <td>{e.name}</td>
+      <td>
+        <button className="btn btn-outline-primary margin-right-21">
+          Edit
+        </button>
+        <button className="btn btn-outline-danger">Delete</button>
+      </td>
+    </tr>
+  );
+})
+            }
             </tbody>
           </table>
         </div>

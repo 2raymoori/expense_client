@@ -17,8 +17,14 @@ const AddIncome = (props) => {
   };
   const processForm = (e) => {
     e.preventDefault();
-    console.log(formControl);
     props.addIncome(formControl);
+    setFormControl({
+      name: "",
+      amount: 0,
+      description: "",
+      incomeCategory: "",
+      incomeDate: "",
+    })
   };
   return (
     <div className="container border border-1 border-danger">
@@ -93,6 +99,7 @@ const AddIncome = (props) => {
                 id="incomeCategory"
                 class="form-control form-select"
               >
+                <option value={""}>Please select a Category</option>
                 {props.incomeCategory.map((e) => {
                   return (
                     <option value={e._id} key={e._id}>

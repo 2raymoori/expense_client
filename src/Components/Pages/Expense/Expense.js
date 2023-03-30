@@ -14,29 +14,32 @@ const Expense = (props) => {
                         </tr>
                         </thead>
                         <tbody>
-                        {props.expense.map((e) => {
-                            return (
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td className="d-flex align-items-center justify-content-between">
-                                        <div className="border border-danger">
-                                            <p>
-                                                {e.expenseDate.split("T")[0]}
-                                                <br />
-                                                {e.name}
-                                                <br />
-                                                {e.description}
-                                                <br />
-                                                {e.expenseCategory.name}
-                                            </p>
-                                        </div>
-                                        <div className="border border-primary text-success">
-                                            <p>{e.amount}</p>
-                                        </div>
-                                    </td>
-                                </tr>
-                            );
-                        })}
+                        {props.expense.length === 0 ? 
+                        (<span className='text-center text-danger'>Sorry There exists no Expense yet. Please add</span>):(
+                            props.expense.map((e) => {
+                                return (
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td className="">
+                                            <div className="border border-danger">
+                                                <p>
+                                                    <span  style={{display:"block",textAlign:"center"}}>{e.expenseDate.split("T")[0]}</span>
+                                                    <br />
+                                                    <b>Name: </b>{e.name}
+                                                    <br />
+                                                    <b>Description: </b>{e.description}
+                                                    <br />
+                                                    <b>Category: </b>{e.expenseCategory.name}
+                                                </p>
+                                            </div>
+                                            <div className="border border-primary text-danger">
+                                                <p style={{textAlign:"right"}}>{e.amount}</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                );
+                            })
+                        )}
                         </tbody>
                     </table>
                 </div>
